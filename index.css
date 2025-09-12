@@ -1,0 +1,13 @@
+a{
+    flex:none;
+    color:#D6D2D2;
+    font-size:25px;
+    width:auto;
+    margin-left:5px;
+    margin-right: 5px;
+    text-align: center;
+    align-items: center;
+    display:flex;
+    text-decoration: none;
+}
+
