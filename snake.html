@@ -2,34 +2,67 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <title>Snake Game</title>
+    <title>貪吃蛇遊戲</title>
     <style>
         body {
             background: #111;
             color: white;
             text-align: center;
             font-family: Verdana;
+            padding-top: 56px
         }
         canvas {
             border: 2px solid white;
             margin-top: 10px;
-            background: black;
         }
-        #buttonStart, #buttonPause {
-            margin: 10px;
-            padding: 5px 15px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+        /* 導覽列 */
+    .topnav {
+        background-color: #333;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+
+    .topnav a {
+        float: left;
+        color: #8ed2ff;
+        padding: 14px 18px;
+        text-decoration: none;
+        font-size: 17px;
+        transition: 0.2s;
+    }
+
+    .topnav a:hover {
+        background-color: #4fc3f7;
+        color: #000;
+    }
+
+    .topnav a.active {
+        background-color: #0288d1;
+        color: white;
+    }
+
     </style>
 </head>
 <body>
-    <h1>🐍 Snake Game</h1>
+    <nav class="topnav">
+        <a class="active" href="index.html">首頁</a>
+        <a href="draw.html">繪圖小工具</a>
+        <a href="snake.html">貪吃蛇</a>
+        <a href="guess.html">猜數字遊戲</a>
+        <a href="guestbook.html">留言板</a>
+    </nav>
+
+    <h1>Snake Game</h1>
     <input type="button" value="Start" id="buttonStart">
-    <input type="button" value="Pause" id="buttonPause">
     <br/>
     <canvas id="canvas" width="400" height="400"></canvas>
 
+    <!-- 引入外部 JavaScript -->
     <script src="snake.js"></script>
 </body>
 </html>

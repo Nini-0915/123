@@ -3,142 +3,22 @@
 <head>
     <meta charset="utf-8">
     <title>🎨 繪圖小工具</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="draw.css">
     <script src="draw.js" defer></script>
-    <style>
-        body {
-            margin: 0;
-            font-family: "Noto Sans TC", "Poppins", sans-serif;
-            background: linear-gradient(135deg, #dbeafe, #e0f2fe, #f0f9ff);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            color: #333;
-        }
-
-        h1 {
-            margin-bottom: 25px;
-            font-size: 2em;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        }
-
-        canvas {
-            border: 3px solid #93c5fd;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(37,99,235,0.15);
-            background: #fff;
-            cursor: crosshair;
-            transition: transform 0.2s ease;
-        }
-        canvas:hover {
-            transform: scale(1.01);
-        }
-
-        .controls {
-            margin-top: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            padding: 20px 30px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            backdrop-filter: blur(6px);
-        }
-
-        label {
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        input[type="color"] {
-            width: 45px;
-            height: 35px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            border-radius: 6px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.1);
-        }
-
-        input[type="range"] {
-            width: 180px;
-            accent-color: #3b82f6;
-            cursor: pointer;
-        }
-
-        #colorPreview {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
-
-        output {
-            font-weight: bold;
-            color: #2563eb;
-            padding-left: 4px;
-        }
-
-        .btn-group {
-            margin-top: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        button {
-            padding: 12px 28px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            cursor: pointer;
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.3);
-            transition: all 0.25s ease;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(37,99,235,0.35);
-        }
-
-        #clear {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            box-shadow: 0 4px 12px rgba(239,68,68,0.3);
-        }
-
-        #eraser {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            box-shadow: 0 4px 12px rgba(251,191,36,0.3);
-        }
-
-        #download {
-            background: linear-gradient(135deg, #10b981, #059669);
-            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
-        }
-
-        #show {
-            margin-top: 30px;
-            border-radius: 12px;
-            max-width: 90%;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-    </style>
 </head>
-<body>
+<body class="draw-page">
+    <nav class="topnav">
+        <a class="active" href="index.html">首頁</a>
+        <a href="draw.html">繪圖小工具</a>
+        <a href="snake.html">貪吃蛇</a>
+        <a href="guess.html">猜數字遊戲</a>
+        <a href="guestbook.html">留言板</a>
+    </nav>
+
     <h1>🎨 繪圖小工具</h1>
-
-    <canvas id="canvas" width="800" height="800"></canvas>
-
+    <div class="canvas-wrap">
+        <canvas id="canvas" width="800" height="800"></canvas>
+    </div>
     <div class="controls">
         <label>顏色：
             <input id="color" type="color" value="#000000">

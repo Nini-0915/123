@@ -1,31 +1,68 @@
 <!DOCTYPE html>
-<html lang="zh-Hart-TW">
-<html>
-    <head>
-        <meta  name="viewport" content="width=device-width,initial-scale=1.0">
-        <meta charset="utf-8">
-        <title>個人網站</title>
-        <link href="style.css" rel="stylesheet" media="all">
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        <h1>歡迎來到我的網站</h1>
-        <marquee scrollamount="30">我是一個跑馬燈</marquee>
-            <div id="wrap">
-                <h2>貓咪</h2>
-                <img class="photo" src="123.png" width="300">
-                <img class="photo" src="234.png" width="300">
-                <div>
-                    <p class="more">我是內容</p>
-                    <p class="more">我是內容</p>
-                    <p class="more">我是內容</p>
-                </div>
+<html lang="zh-Hant-TW">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>個人網站</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- 導覽列 -->
+    <nav class="topnav">
+        <a class="active" href="index.html">首頁</a>
+        <a href="draw.html">繪圖小工具</a>
+        <a href="snake.html">貪吃蛇</a>
+        <a href="guess.html">猜數字遊戲</a>
+        <a href="guestbook.html">留言板</a>
+    </nav>
+
+    <div id="wrap">
+
+        <h1 class="fade-in">Web Design Journey</h1>
+
+        <marquee scrollamount="20">✨ 我是一個跑馬燈，歡迎光臨！ ✨</marquee>
+
+        <!-- 圖片 + 文字區塊 -->
+        <div class="img-section fade-in">
+            <img class="photo" src="123.png" alt="" width="260">
+            <img class="photo" src="234.png" alt="" width="260">
+            <img class="photo" src="345.png" alt="" width="260">
+
+            <div class="more-box">
+                <p class="more">我是一名就讀北大高中的學生，對網頁設計充滿興趣。</p>
+                <p class="more">這個網站展示了我完成的繪圖工具與小遊戲作品。</p>
+                <p class="more">透過實作，我學會如何將想法轉換成實際的網頁功能。</p>
+
+            </div>
+        </div>
+
         <h2>關於我</h2>
-        <a href="https://www.bdsh.ntpc.edu.tw/" target="_blank">北大高中連結</a>
-        <h3>我的位置</h3>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7028.97318461536!2d121.38546432469012!3d24.950156984869096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681c0ca7ee498b%3A0x3ffa48b382afe1b3!2z5paw5YyX5biC56uL5YyX5aSn6auY5Lit!5e0!3m2!1szh-TW!2stw!4v1757641022199!5m2!1szh-TW!2stw" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/CLUPkcLQm64?si=xmqX4xtdnkiKpySh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div class="link-list">
+            <a href="http://10.232.73.21:3000/draw.html" target="_blank">繪圖小工具</a>
+            <a href="http://10.232.73.21:3000/snake.html" target="_blank">貪吃蛇</a>
+            <a href="http://10.232.73.21:3000/guess.html" target="_blank">猜數字遊戲</a>
+            <a href="http://10.232.73.21:3000/guestbook.html" target="_blank">留言板</a>
+            <iframe width="560" height="315"
+                    src="https://www.youtube.com/embed/CLUPkcLQm64?si=xmqX4xtdnkiKpySh"
+                    allowfullscreen></iframe>
+        </div>
+
+        <h3>我的學校</h3>
+        <div class="media-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3617.5158134599055!2d121.37316807595438!3d24.948559341725566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34681c0ca7ee498b%3A0x3ffa48b382afe1b3!2z5paw5YyX5biC56uL5YyX5aSn6auY5Lit!5e0!3m2!1szh-TW!2stw!4v1765502156419!5m2!1szh-TW!2stw"
+                    width="600" height="400" loading="lazy"></iframe>
+            <br>
+            <a href="https://www.bdsh.ntpc.edu.tw/" target="_blank" class="school-link">
+                前往北大高中官方網站
+            </a>
+
+        </div>
+
     </div>
-    </body>
-    <a href="#wrap" id="top">TOP</a>
+
+    <a href="#wrap" id="top">TOP ▲</a>
+
+</body>
 </html>

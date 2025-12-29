@@ -1,16 +1,11 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
-// === 遊戲設定 ===
 const BLOCK_SIZE = 20;
 const MAP_SIZE = canvas.width / BLOCK_SIZE;
 let score = 0;
 let gameInterval;
-let gameSpeed = 150;       // 初始速度（越小越快）
-let isPaused = false;      // 暫停狀態
-let directionChanged = false;
 
-// === 蛇 ===
 const snake = {
     body: [{ x: MAP_SIZE / 2, y: MAP_SIZE / 2 }],
     size: 5,
@@ -39,7 +34,6 @@ const snake = {
     }
 };
 
-// === 蘋果 ===
 const apple = {
     x: 5,
     y: 5,
@@ -68,7 +62,6 @@ const apple = {
     }
 };
 
-// === 遊戲主迴圈 ===
 function drawGame() {
     drawMap();
     apple.drawApple();
@@ -76,7 +69,6 @@ function drawGame() {
     eatApple();
     drawScore();
     checkDeath();
-    directionChanged = false;
 }
 
 function drawMap() {
@@ -89,12 +81,6 @@ function eatApple() {
         snake.size++;
         score++;
         apple.putApple();
-
-        // 🎮 提升難度：每5分加速
-        if (score % 5 === 0 && gameSpeed > 50) {
-            gameSpeed -= 10; // 加快速度
-            restartInterval();
-        }
     }
 }
 
@@ -102,109 +88,55 @@ function drawScore() {
     ctx.fillStyle = "white";
     ctx.font = "14px Verdana";
     ctx.fillText("分數：" + score, 10, 20);
-    ctx.fillText("速度：" + (150 - gameSpeed) / 10, 10, 40);
 }
 
 function checkDeath() {
-    const head = snake.body[0];
-
     // 撞牆
-    if (head.x < 0 || head.x >= MAP_SIZE || head.y < 0 || head.y >= MAP_SIZE) {
-        endGame();
+    if (
+        snake.body[0].x < 0 || snake.body[0].x >= MAP_SIZE ||
+        snake.body[0].y < 0 || snake.body[0].y >= MAP_SIZE
+    ) {
+        clearInterval(gameInterval);
+        alert("遊戲結束！分數：" + score);
         return;
     }
-
     // 撞自己
     for (let i = 1; i < snake.body.length; i++) {
-        if (head.x === snake.body[i].x && head.y === snake.body[i].y) {
-            endGame();
+        if (snake.body[0].x === snake.body[i].x &&
+            snake.body[0].y === snake.body[i].y) {
+            clearInterval(gameInterval);
+            alert("遊戲結束！分數：" + score);
             return;
         }
     }
 }
 
-function endGame() {
-    clearInterval(gameInterval);
-
-    // 在畫布上顯示「Game Over」
-    ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "white";
-    ctx.font = "36px Verdana";
-    ctx.fillText("遊戲結束", canvas.width / 2 - 100, canvas.height / 2 - 10);
-    ctx.font = "20px Verdana";
-    ctx.fillText("Game Over", canvas.width / 2 - 60, canvas.height / 2 + 20);
-    ctx.font = "16px Verdana";
-    ctx.fillText("按 Start 重新開始", canvas.width / 2 - 85, canvas.height / 2 + 60);
-
-    document.getElementById("buttonStart").disabled = false;
-}
-
-// === 鍵盤控制（防多重方向） ===
+// === 鍵盤控制 ===
 document.addEventListener("keydown", keyDown);
-
 function keyDown(event) {
-    if (directionChanged) return;
-
     if ((event.keyCode === 38 || event.keyCode === 87) && snake.direction.y !== 1) {
         snake.direction = { x: 0, y: -1 };
-        directionChanged = true;
     } else if ((event.keyCode === 40 || event.keyCode === 83) && snake.direction.y !== -1) {
         snake.direction = { x: 0, y: 1 };
-        directionChanged = true;
     } else if ((event.keyCode === 37 || event.keyCode === 65) && snake.direction.x !== 1) {
         snake.direction = { x: -1, y: 0 };
-        directionChanged = true;
     } else if ((event.keyCode === 39 || event.keyCode === 68) && snake.direction.x !== -1) {
         snake.direction = { x: 1, y: 0 };
-        directionChanged = true;
     }
 }
 
 // === 遊戲開始 ===
 function gameStart() {
+    // 重置遊戲
     snake.body = [{ x: MAP_SIZE / 2, y: MAP_SIZE / 2 }];
     snake.size = 5;
     snake.direction = { x: 0, y: -1 };
     score = 0;
-    gameSpeed = 150;
     apple.putApple();
-    isPaused = false;
 
-    restartInterval();
-    document.getElementById("buttonStart").disabled = true;
-    document.getElementById("buttonPause").value = "Pause";
-}
-
-// === 暫停 / 繼續 ===
-function togglePause() {
-    if (isPaused) {
-        // 恢復遊戲
-        restartInterval();
-        isPaused = false;
-        document.getElementById("buttonPause").value = "Pause";
-    } else {
-        // 暫停遊戲
-        clearInterval(gameInterval);
-        isPaused = true;
-        document.getElementById("buttonPause").value = "Resume";
-
-        // 畫面顯示「暫停中」
-        ctx.fillStyle = "rgba(0, 0, 0, 0.5)";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "white";
-        ctx.font = "28px Verdana";
-        ctx.fillText("暫停中", canvas.width / 2 - 60, canvas.height / 2);
-    }
-}
-
-// === 重新啟動 Interval（用於加速或繼續） ===
-function restartInterval() {
     clearInterval(gameInterval);
-    gameInterval = setInterval(drawGame, gameSpeed);
+    gameInterval = setInterval(drawGame, 100);
 }
 
 // === 監聽按鈕 ===
 document.getElementById("buttonStart").addEventListener("click", gameStart);
-document.getElementById("buttonPause").addEventListener("click", togglePause);

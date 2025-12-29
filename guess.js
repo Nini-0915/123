@@ -89,4 +89,3 @@ function initGame() {
 guessSubmit.addEventListener("click", checkGuess);
 restartBtn.addEventListener("click", initGame);
 result.classList.add("success");
-
